@@ -1,7 +1,4 @@
-var collection = new Mongo.Collection("groundUser", { connection: null });
-GroundUser = new Ground.Collection(collection, "groundUser");
-
-Ground.Collection(Meteor.users);
+GroundUser = new Ground.Collection("groundUser", { connection: null });
 
 var cleanObjectForUpdate = function(obj) {
   if (!obj || !_.isObject(obj)) return;
