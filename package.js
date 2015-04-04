@@ -11,7 +11,8 @@ Package.on_use(function (api, where) {
     "accounts-base@1.2.0",
     "ground:db@0.3.6",
     "mongo@1.1.0",
-    "underscore@1.0.3"
+    "underscore@1.0.3",
+    "gwendall:accounts-helpers"
   ], "client");
 
 	api.add_files("client/lib.js", "client");
