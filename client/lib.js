@@ -1,9 +1,9 @@
-GroundUser = new Ground.Collection("groundUser", { connection: null });
+GroundUser = new Ground.Collection('groundUser', { connection: null });
 
 var cleanObjectForUpdate = function(obj) {
   if (!obj || !_.isObject(obj)) return;
   for (var k in obj) {
-    if (k.indexOf("$") > -1) delete obj[k];
+    if (_.isFunction(obj[k]) || k.indexOf('$') > -1) delete obj[k];
   }
   delete obj._id;
   return obj;
@@ -26,10 +26,11 @@ Meteor.autorun(function() {
 
 });
 
-Meteor.user = function () {
+Meteor.user = function() {
   var userId = Meteor.userId();
   if (!userId) return null;
-  return GroundUser.findOne({ _id: userId });
+  var selector = { _id: userId };
+  return Meteor.users.findOne(selector) || GroundUser.findOne(selector);
 };
 
 Accounts.onLogout(function() {
